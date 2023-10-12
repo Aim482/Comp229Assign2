@@ -8,23 +8,19 @@ var body = require('body-parser');
 
 
 const mongoose = require('mongoose');
-const mongouri = 'mongodb+srv://shermarpinder:<Awes0m32345%2F>@cluster0.iz7bpxb.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp'
+const mongouri = "mongodb+srv://shermarpinder:Awes0m32345%2F@cluster0.iz7bpxb.mongodb.net/Marketplace?retryWrites=true&w=majority&appName=AtlasApp"
 main().catch(err => console.log(err));
-
+//mongodb+srv://shermarpinder:<Awes0m32345%2F>@cluster0.iz7bpxb.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp
 async function main() {
   //await mongoose.connect('mongodb://127.0.0.1:27017/test');
-  await mongoose.connect(mongouri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  });
+  await mongoose.connect(mongouri
+  );
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
 var indexRouter = require('./routes/index');
+var products = require('./routes/products');
 
 var app = express();
 
@@ -43,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api/v1', products);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

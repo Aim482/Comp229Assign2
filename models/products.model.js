@@ -7,8 +7,8 @@ var ProductsSchema = new mongoose.Schema({
   price: Number,
   quantity: Number,
   categories: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Categories'
+    name: String,
+    enum: ["Men", "Women", "Teen"]
   }
 });
 
